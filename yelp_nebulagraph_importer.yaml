@@ -27,8 +27,8 @@ clientSettings:
 logPath: ./err/importer.log
 files:
 
-  - path: ./net-rur.csv
-    failDataPath: ./err/net-rur.csv.fail
+  - path: ./net_rur.csv
+    failDataPath: ./err/net_rur.csv.fail
     batchSize: 64
     inOrder: true
     type: csv
@@ -48,8 +48,8 @@ files:
           index: 1
           type: int
 
-  - path: ./net-rsr.csv
-    failDataPath: ./err/net-rsr.csv.fail
+  - path: ./net_rsr.csv
+    failDataPath: ./err/net_rsr.csv.fail
     batchSize: 64
     inOrder: true
     type: csv
@@ -69,8 +69,8 @@ files:
           index: 1
           type: int
 
-  - path: ./net-rtr.csv
-    failDataPath: ./err/net-rtr.csv.fail
+  - path: ./net_rtr.csv
+    failDataPath: ./err/net_rtr.csv.fail
     batchSize: 64
     inOrder: true
     type: csv

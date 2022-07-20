@@ -16,7 +16,7 @@ Schema of the data:
 
 ```bash
 python3 -m pip install -r requirements.txt
-python3 download_data.py
+python3 data_download.py
 ls -l data/*.csv
 ```
 Generated files:
@@ -35,8 +35,14 @@ net_rsr.csv  net_rtr.csv  net_rur.csv  vertices.csv
 ```bash
 docker run --rm -ti \
     --network=nebula-net \
-    -v ./yelp_nebulagraph_importer.yaml:/root/importer.yaml \
-    -v ./data/root \
+    -v ${PWD}/yelp_nebulagraph_importer.yaml:/root/importer.yaml \
+    -v ${PWD}/data:/root \
     vesoft/nebula-importer:v3.1.0 \
     --config /root/importer.yaml
+```
+
+After it's imported, we could query the stats of the graph:
+
+```bash
+~/.nebula-up/console.sh -e "USE yelp; SHOW STATS"
 ```
