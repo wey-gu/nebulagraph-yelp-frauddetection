@@ -1,0 +1,209 @@
+---
+version: v2
+description: nebulagraph-yelp importer config file
+removeTempFiles: false
+clientSettings:
+  retry: 6
+  concurrency: 1 # number of graph clients
+  channelBufferSize: 16
+  space: yelp
+  connection:
+    user: root
+    password: nebula
+    address: graphd:9669 # change to your nebula graph's graphd address
+  postStart:
+    commands: |
+      DROP SPACE IF EXISTS yelp;
+      CREATE SPACE IF NOT EXISTS yelp(partition_num=9, replica_factor=1, vid_type=int);
+      USE yelp;
+      CREATE TAG review(is_fraud int, f0 int, f1 int, f2 int, f3 int, f4 int, f5 int, f6 int, f7 int, f8 int, f9 int, f10 int, f11 int, f12 int, f13 int, f14 int, f15 int, f16 int, f17 int, f18 int, f19 int, f20 int, f21 int, f22 int, f23 int, f24 int, f25 int, f26 int, f27 int, f28 int, f29 int, f30 int, f31 int);
+      CREATE EDGE shares_user_with();
+      CREATE EDGE shares_restaurant_rating_with();
+      CREATE EDGE shares_restaurant_in_one_month_with();
+    afterPeriod: 12s
+  preStop:
+    commands: |
+      SUBMIT JOB STATS;
+logPath: ./err/importer.log
+files:
+
+  - path: ./net-rur.csv
+    failDataPath: ./err/net-rur.csv.fail
+    batchSize: 64
+    inOrder: true
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: edge
+      edge:
+        name: shares_user_with
+        withRanking: false
+        srcVID:
+          index: 0
+          type: int
+        dstVID:
+          index: 1
+          type: int
+
+  - path: ./net-rsr.csv
+    failDataPath: ./err/net-rsr.csv.fail
+    batchSize: 64
+    inOrder: true
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: edge
+      edge:
+        name: shares_restaurant_rating_with
+        withRanking: false
+        srcVID:
+          index: 0
+          type: int
+        dstVID:
+          index: 1
+          type: int
+
+  - path: ./net-rtr.csv
+    failDataPath: ./err/net-rtr.csv.fail
+    batchSize: 64
+    inOrder: true
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: edge
+      edge:
+        name: shares_restaurant_in_one_month_with
+        withRanking: false
+        srcVID:
+          index: 0
+          type: int
+        dstVID:
+          index: 1
+          type: int
+
+  - path: ./vertices.csv
+    failDataPath: ./err/vertices.csv.fail
+    batchSize: 128
+    inOrder: true
+    type: csv
+    csv:
+      withHeader: false
+      withLabel: false
+      delimiter: ","
+    schema:
+      type: vertex
+      vertex:
+        vid:
+          index: 33
+          type: int
+        tags:
+          - name: review
+            props:
+              - name: is_fraud
+                type: int
+                index: 32
+              - name: f0
+                type: int
+                index: 0
+              - name: f1
+                type: int
+                index: 1
+              - name: f2
+                type: int
+                index: 2
+              - name: f3
+                type: int
+                index: 3
+              - name: f4
+                type: int
+                index: 4
+              - name: f5
+                type: int
+                index: 5
+              - name: f6
+                type: int
+                index: 6
+              - name: f7
+                type: int
+                index: 7
+              - name: f8
+                type: int
+                index: 8
+              - name: f9        
+                type: int
+                index: 9
+              - name: f10
+                type: int
+                index: 10
+              - name: f11
+                type: int
+                index: 11
+              - name: f12
+                type: int
+                index: 12
+              - name: f13
+                type: int
+                index: 13
+              - name: f14
+                type: int
+                index: 14
+              - name: f15
+                type: int
+                index: 15
+              - name: f16
+                type: int
+                index: 16
+              - name: f17
+                type: int
+                index: 17
+              - name: f18
+                type: int
+                index: 18
+              - name: f19
+                type: int
+                index: 19
+              - name: f20
+                type: int
+                index: 20
+              - name: f21
+                type: int
+                index: 21
+              - name: f22
+                type: int
+                index: 22
+              - name: f23
+                type: int
+                index: 23
+              - name: f24
+                type: int
+                index: 24
+              - name: f25
+                type: int
+                index: 25
+              - name: f26
+                type: int
+                index: 26
+              - name: f27
+                type: int
+                index: 27
+              - name: f28
+                type: int
+                index: 28
+              - name: f29
+                type: int
+                index: 29
+              - name: f30
+                type: int
+                index: 30
+              - name: f31
+                type: int
+                index: 31
