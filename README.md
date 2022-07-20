@@ -46,3 +46,19 @@ After it's imported, we could query the stats of the graph:
 ```bash
 ~/.nebula-up/console.sh -e "USE yelp; SHOW STATS"
 ```
+It should be like this:
+
+```bash
+(root@nebula) [(none)]> USE yelp; SHOW STATS
++---------+---------------------------------------+---------+
+| Type    | Name                                  | Count   |
++---------+---------------------------------------+---------+
+| "Tag"   | "review"                              | 45954   |
+| "Edge"  | "shares_restaurant_in_one_month_with" | 1147232 |
+| "Edge"  | "shares_restaurant_rating_with"       | 6805486 |
+| "Edge"  | "shares_user_with"                    | 98630   |
+| "Space" | "vertices"                            | 45954   |
+| "Space" | "edges"                               | 8051348 |
++---------+---------------------------------------+---------+
+Got 6 rows (time spent 1911/4488 us)
+```
