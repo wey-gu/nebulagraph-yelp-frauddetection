@@ -16,7 +16,7 @@ clientSettings:
       DROP SPACE IF EXISTS yelp;
       CREATE SPACE IF NOT EXISTS yelp(partition_num=9, replica_factor=1, vid_type=int);
       USE yelp;
-      CREATE TAG review(is_fraud int, f0 int, f1 int, f2 int, f3 int, f4 int, f5 int, f6 int, f7 int, f8 int, f9 int, f10 int, f11 int, f12 int, f13 int, f14 int, f15 int, f16 int, f17 int, f18 int, f19 int, f20 int, f21 int, f22 int, f23 int, f24 int, f25 int, f26 int, f27 int, f28 int, f29 int, f30 int, f31 int);
+      CREATE TAG review(is_fraud int, f0 FLOAT, f1 FLOAT, f2 FLOAT, f3 FLOAT, f4 FLOAT, f5 FLOAT, f6 FLOAT, f7 FLOAT, f8 FLOAT, f9 FLOAT, f10 FLOAT, f11 FLOAT, f12 FLOAT, f13 FLOAT, f14 FLOAT, f15 FLOAT, f16 FLOAT, f17 FLOAT, f18 FLOAT, f19 FLOAT, f20 FLOAT, f21 FLOAT, f22 FLOAT, f23 FLOAT, f24 FLOAT, f25 FLOAT, f26 FLOAT, f27 FLOAT, f28 FLOAT, f29 FLOAT, f30 FLOAT, f31 FLOAT);
       CREATE EDGE shares_user_with();
       CREATE EDGE shares_restaurant_rating_with();
       CREATE EDGE shares_restaurant_in_one_month_with();
@@ -112,98 +112,98 @@ files:
                 type: int
                 index: 32
               - name: f0
-                type: int
+                type: FLOAT
                 index: 0
               - name: f1
-                type: int
+                type: FLOAT
                 index: 1
               - name: f2
-                type: int
+                type: FLOAT
                 index: 2
               - name: f3
-                type: int
+                type: FLOAT
                 index: 3
               - name: f4
-                type: int
+                type: FLOAT
                 index: 4
               - name: f5
-                type: int
+                type: FLOAT
                 index: 5
               - name: f6
-                type: int
+                type: FLOAT
                 index: 6
               - name: f7
-                type: int
+                type: FLOAT
                 index: 7
               - name: f8
-                type: int
+                type: FLOAT
                 index: 8
               - name: f9        
-                type: int
+                type: FLOAT
                 index: 9
               - name: f10
-                type: int
+                type: FLOAT
                 index: 10
               - name: f11
-                type: int
+                type: FLOAT
                 index: 11
               - name: f12
-                type: int
+                type: FLOAT
                 index: 12
               - name: f13
-                type: int
+                type: FLOAT
                 index: 13
               - name: f14
-                type: int
+                type: FLOAT
                 index: 14
               - name: f15
-                type: int
+                type: FLOAT
                 index: 15
               - name: f16
-                type: int
+                type: FLOAT
                 index: 16
               - name: f17
-                type: int
+                type: FLOAT
                 index: 17
               - name: f18
-                type: int
+                type: FLOAT
                 index: 18
               - name: f19
-                type: int
+                type: FLOAT
                 index: 19
               - name: f20
-                type: int
+                type: FLOAT
                 index: 20
               - name: f21
-                type: int
+                type: FLOAT
                 index: 21
               - name: f22
-                type: int
+                type: FLOAT
                 index: 22
               - name: f23
-                type: int
+                type: FLOAT
                 index: 23
               - name: f24
-                type: int
+                type: FLOAT
                 index: 24
               - name: f25
-                type: int
+                type: FLOAT
                 index: 25
               - name: f26
-                type: int
+                type: FLOAT
                 index: 26
               - name: f27
-                type: int
+                type: FLOAT
                 index: 27
               - name: f28
-                type: int
+                type: FLOAT
                 index: 28
               - name: f29
-                type: int
+                type: FLOAT
                 index: 29
               - name: f30
-                type: int
+                type: FLOAT
                 index: 30
               - name: f31
-                type: int
+                type: FLOAT
                 index: 31
