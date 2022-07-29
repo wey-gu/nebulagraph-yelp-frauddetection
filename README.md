@@ -62,3 +62,43 @@ It should be like this:
 +---------+---------------------------------------+---------+
 Got 6 rows (time spent 1911/4488 us)
 ```
+
+## NebulaGraph DGL Integration
+
+> I know I don't have to do this as we have it in DGL dataset already, this is just a demo of how to use NebulaGraph with DGL.
+
+```python
+In [1]:
+from nebula_dgl import NebulaLoader
+
+nebula_config = {
+    "graph_hosts": [
+                ('graphd', 9669),
+                ('graphd1', 9669),
+                ('graphd2', 9669)
+            ],
+    "user": "root",
+    "password": "nebula",
+}
+
+with open('nebulagraph_yelp_dgl_mapper.yaml', 'r') as f:
+    feature_mapper = yaml.safe_load(f)
+
+nebula_loader = NebulaLoader(nebula_config, feature_mapper)
+
+g = nebula_loader.load()
+
+# This will take a while
+
+In [2]: g
+Out[2]:
+Graph(num_nodes={'review': 45954},
+      num_edges={('review', 'shares_restaurant_in_one_month_with', 'review'): 1147232, ('review', 'shares_restaurant_rating_with', 'review'): 6805486, ('review', 'shares_user_with', 'review'): 98630},
+      metagraph=[('review', 'review', 'shares_restaurant_in_one_month_with'), ('review', 'review', 'shares_restaurant_rating_with'), ('review', 'review', 'shares_user_with')])
+
+In [3]: g.canonical_etypes
+Out[3]:
+[('review', 'shares_restaurant_in_one_month_with', 'review'),
+ ('review', 'shares_restaurant_rating_with', 'review'),
+ ('review', 'shares_user_with', 'review')]
+```
