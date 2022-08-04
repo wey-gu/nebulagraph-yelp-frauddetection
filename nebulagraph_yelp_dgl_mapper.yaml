@@ -240,7 +240,13 @@ vertex_tags:
             nullable: False
         filter:
           type: value
-
+      - name: is_fraud
+        properties:
+          - name: is_fraud
+            type: int
+            nullable: False
+        filter:
+          type: value
 edge_types:
   - name: shares_user_with
     start_vertex_tag: review
